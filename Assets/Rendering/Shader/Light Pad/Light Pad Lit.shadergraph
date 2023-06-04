@@ -593,8 +593,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": -260.0,
-            "y": 254.39999389648438
+            "x": -19.99996566772461,
+            "y": 439.0
         },
         "m_Blocks": [
             {
@@ -610,8 +610,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": -260.0000305175781,
-            "y": 467.0000305175781
+            "x": -19.999956130981447,
+            "y": 641.0
         },
         "m_Blocks": [
             {
@@ -1072,7 +1072,7 @@
             "m_Id": "1c8eab8bc6184ac99c75f8a3c5642340"
         },
         {
-            "m_Id": "c0bab6f6ba24401ea9e73951e5a54272"
+            "m_Id": "47b9c37935ca44c5bfa8cce71ff43330"
         }
     ],
     "m_CustomEditorGUI": "",
@@ -1507,6 +1507,14 @@
         "z": 0.0,
         "w": 0.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.Rendering.HighDefinition.ShaderGraph.HDUnlitData",
+    "m_ObjectId": "47b9c37935ca44c5bfa8cce71ff43330",
+    "m_EnableShadowMatte": false,
+    "m_DistortionOnly": false
 }
 
 {
@@ -2967,14 +2975,6 @@
 }
 
 {
-    "m_SGVersion": 0,
-    "m_Type": "UnityEditor.Rendering.HighDefinition.ShaderGraph.HDUnlitData",
-    "m_ObjectId": "c0bab6f6ba24401ea9e73951e5a54272",
-    "m_EnableShadowMatte": false,
-    "m_DistortionOnly": false
-}
-
-{
     "m_SGVersion": 3,
     "m_Type": "UnityEditor.ShaderGraph.Internal.ColorShaderProperty",
     "m_ObjectId": "c2100078bea24bec9d1dd7df6fdd2a7e",
@@ -3131,10 +3131,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -214.71524047851563,
-            "y": 968.28466796875,
-            "width": 208.0,
-            "height": 302.0
+            "x": -192.99996948242188,
+            "y": 815.0000610351563,
+            "width": 130.00003051757813,
+            "height": 117.99993896484375
         }
     },
     "m_Slots": [
@@ -3154,7 +3154,7 @@
         "plus"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_DismissedVersion": 0,
     "m_PreviewMode": 0,
     "m_CustomColors": {
