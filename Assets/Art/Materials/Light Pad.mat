@@ -300,11 +300,11 @@ Material:
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _Map_Size: {r: 250, g: 250, b: 0, a: 0}
     - _Player_1_Color: {r: 0, g: 0, b: 1, a: 0}
-    - _Player_1_Position: {r: 0, g: 0, b: 0, a: 0}
+    - _Player_1_Position: {r: -225.56648, g: -75.20411, b: 0, a: 0}
     - _Player_2_Color: {r: 1, g: 0, b: 0, a: 0}
-    - _Player_2_Position: {r: 0, g: 0, b: 0, a: 0}
+    - _Player_2_Position: {r: -107.5, g: -112.5, b: 0, a: 0}
     - _Player_3_Color: {r: 0, g: 1, b: 0, a: 0}
-    - _Player_3_Position: {r: 0, g: 0, b: 0, a: 0}
+    - _Player_3_Position: {r: -125, g: -115, b: 0, a: 0}
     - _Relative_Position: {r: -5, g: -5, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
