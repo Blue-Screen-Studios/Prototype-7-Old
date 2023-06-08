@@ -8,7 +8,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 namespace Assembly.IBX.Main
 {
-    public class MovePlayer : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         [SerializeField] private float moveForce;
         [SerializeField] private float maxVelocity;
@@ -31,7 +31,10 @@ namespace Assembly.IBX.Main
 
             Rigidbody body = GetComponent<Rigidbody>();
 
-            body.AddForce(moveVector * moveForce);
+            if(body.velocity.magnitude < maxVelocity)
+            {
+                body.AddForce(moveVector * moveForce);
+            }
         }
     }
 }
