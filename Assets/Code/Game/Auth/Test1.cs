@@ -1,3 +1,4 @@
+using Assembly.IBX.Remote;
 using System.IO;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
@@ -9,18 +10,20 @@ namespace Assembly.IBX.Auth
     {
         private async void Start()
         {
-            UGSAuth.AuthenticateCachedUser();
+            await UGSAuth.AuthenticateCachedUser();
 
-            DiscordOauth2 discordOauth2 = new DiscordOauth2();
+            //Get the configs for this user
+            await Configuration.GetConfiguration();
 
-            discordOauth2.LaunchOAuth2Prompt();
+            DiscordOauth2.LaunchOAuth2Prompt();
             
-            string code = discordOauth2.ListenForAuthorizationCode();
+            string code = DiscordOauth2.ListenForAuthorizationCode();
 
-            Debug.Log(code);
-            string tokenJSON = await discordOauth2.TokenExchange(code);
+            Debug.Log("Auth Code " + code);
+            string tokenJSON = await DiscordOauth2.TokenExchange(code);
 
             File.WriteAllText(Application.streamingAssetsPath + "/cache/discord.ibxcache", tokenJSON);
+
         }
     }
 }

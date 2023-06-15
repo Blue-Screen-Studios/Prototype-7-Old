@@ -2,6 +2,7 @@
     "name": "Assembly.IBX.Main",
     "rootNamespace": "Assembly.IBX.Main",
     "references": [
+        "GUID:a7a3eb54d27fdca48ab9c96e7a6ab780",
         "GUID:5540e30183c82e84b954c033c388e06c",
         "GUID:f220a277eefae4d3aa9e31c2b43bb307",
         "GUID:fe25561d224ed4743af4c60938a59d0b",

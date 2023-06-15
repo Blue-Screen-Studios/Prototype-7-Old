@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System.Threading.Tasks;
 
 using Unity.Services.Authentication;
 using Unity.Services.Core;
-using UnityEditor;
+
+using Assembly.IBX.Remote;
 
 namespace Assembly.IBX.Auth
 {
     internal static class UGSAuth
     {
-        internal static async void AuthenticateCachedUser()
+        internal static async Task AuthenticateCachedUser()
         {
             //If UGS services are not initialized, initialize them
             if(UnityServices.State == ServicesInitializationState.Uninitialized)
