@@ -1,0 +1,20 @@
+[
+	{
+		"key": "score",
+		"name": "All Time Score",
+		"description": "This user's all time score.",
+		"type": 2
+	},
+	{
+		"key": "is_developer",
+		"name": "Is Game Developer",
+		"description": "Is this user a developer?",
+		"type": 7
+	},
+	{
+		"key": "player_since",
+		"name": "Player Since",
+		"description": "Days since the player's first login",
+		"type": 6
+	}
+]
