@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
@@ -20,7 +21,9 @@ namespace Assembly.IBX.Main
             string code = discordOauth2.ListenForAuthorizationCode();
 
             Debug.Log(code);
-            string x = await discordOauth2.TokenExchange(code);
+            string tokenJSON = await discordOauth2.TokenExchange(code);
+
+            File.WriteAllText(Application.streamingAssetsPath + "/cache/discord.ibxcache", tokenJSON);
         }
     }
 }

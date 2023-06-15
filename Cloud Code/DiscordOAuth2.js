@@ -14,29 +14,37 @@ module.exports = async ({ params, context, logger }) => {
 
   const clientId = "1116970853905743894";
   const clientSecret = "6ZOuRcQ4omsdZrWjgxgXnRiDAos_mrvs";
-  const REDIRECT_URI = "http://localhost:3000";
+  const REDIRECT_URI = "http://localhost:6449/ibx/discord";
   const code = params.code;
   const REQUEST_URI = "https://discord.com/api/oauth2/token";
-  
+
   let data = {
     'client_id': clientId,
     'client_secret': clientSecret,
-    'grant_type': 'client_credentials',
+    'grant_type': 'authorization_code',
     'code': code,
-    'redirect_uri': REDIRECT_URI,
-    'scope': 'identify guilds guilds.join'
+    'redirect_uri': REDIRECT_URI
   };
-  
+
   const urlEncodedData = Object.keys(data)
-  .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-  .join('&');
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+
+  let config = {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }
+
+  const result = await axios.post(REQUEST_URI, urlEncodedData, config);
   
-   let config = {
-     headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-   }
-      
-   let result = await axios.post(REQUEST_URI, urlEncodedData, config);
-   return result.data;
+  logger.info(result.data);
+  
+  return {
+    access_token: result.data.access_token,
+    expires_in: result.data.expires_in,
+    refresh_token: result.data.refresh_token,
+    scope: result.data.scope,
+    token_type: result.data.token_type
+  }
 };

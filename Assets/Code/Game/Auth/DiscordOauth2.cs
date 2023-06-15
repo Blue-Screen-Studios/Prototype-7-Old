@@ -5,6 +5,9 @@ using System.Net;
 using UnityEngine;
 using Unity.Services.CloudCode;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace Assembly.IBX.Main
 {
@@ -70,19 +73,42 @@ namespace Assembly.IBX.Main
 
         public async Task<string> TokenExchange(string authorizationCode)
         {
-            Dictionary<string, object> parameters = new Dictionary<string, object>
-            {
-                { "code", authorizationCode }
-            };
+            Dictionary<string, object> arguments = new Dictionary<string, object> { { "code", authorizationCode } };
+            OAuth2TokenResponse response = await CloudCodeService.Instance.CallEndpointAsync<OAuth2TokenResponse>("DiscordOauth2", arguments);
 
-#pragma warning disable CS0618 // Type or member is obsolete
-            string cloudResponse = await CloudCode.CallEndpointAsync("DiscordOauth2", new { code = authorizationCode } );
-#pragma warning restore CS0618 // Type or member is obsolete
+            Debug.Log(JsonConvert.SerializeObject(response));
 
-            Debug.Log(cloudResponse);
-
-            return cloudResponse;
+            return JsonConvert.SerializeObject(response);
 
         }
     }
+
+    public class OAuth2TokenResponse
+    {
+        public string access_token;
+        public long expires_in;
+        public string refresh_token;
+        public string scope;
+        public string token_type;
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("access_token ");
+            sb.Append(access_token);
+            sb.Append("| expires_in ");
+            sb.Append(expires_in);
+            sb.Append("| refresh_token ");
+            sb.Append(refresh_token);
+            sb.Append("| scope ");
+            sb.Append(scope);
+            sb.Append("| token_type ");
+            sb.Append(token_type);
+
+            return sb.ToString();
+        }
+
+    }
+
 }
