@@ -1,17 +1,16 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Net;
-using UnityEngine;
-using Unity.Services.CloudCode;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using System.Text;
 using Newtonsoft.Json;
 
-namespace Assembly.IBX.Main
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Net;
+
+using UnityEngine;
+using Unity.Services.CloudCode;
+
+namespace Assembly.IBX.Auth
 {
-    public class DiscordOauth2 : OAuth2
+    public class DiscordOauth2 : IOAuth2
     {
         public string launch_url { get => "https://discord.com/api/oauth2/authorize?client_id=1116970853905743894&redirect_uri=http%3A%2F%2Flocalhost%3A6449%2Fibx%2Fdiscord&response_type=code&scope=identify%20guilds.join%20guilds"; set => value = "https://discord.com/api/oauth2/authorize?client_id=1116970853905743894&redirect_uri=http%3A%2F%2Flocalhost%3A6449%2Fibx%2Fdiscord&response_type=code&scope=identify%20guilds.join%20guilds"; }
         public string redirect_uri_incoming { get => "http://localhost:6449/ibx/discord/"; set => value = "http://localhost:6449/ibx/discord/"; }
@@ -74,41 +73,10 @@ namespace Assembly.IBX.Main
         public async Task<string> TokenExchange(string authorizationCode)
         {
             Dictionary<string, object> arguments = new Dictionary<string, object> { { "code", authorizationCode } };
-            OAuth2TokenResponse response = await CloudCodeService.Instance.CallEndpointAsync<OAuth2TokenResponse>("DiscordOauth2", arguments);
+            Token response = await CloudCodeService.Instance.CallEndpointAsync<Token>("DiscordOauth2", arguments);
 
             Debug.Log(JsonConvert.SerializeObject(response));
-
             return JsonConvert.SerializeObject(response);
-
         }
     }
-
-    public class OAuth2TokenResponse
-    {
-        public string access_token;
-        public long expires_in;
-        public string refresh_token;
-        public string scope;
-        public string token_type;
-
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-
-            sb.Append("access_token ");
-            sb.Append(access_token);
-            sb.Append("| expires_in ");
-            sb.Append(expires_in);
-            sb.Append("| refresh_token ");
-            sb.Append(refresh_token);
-            sb.Append("| scope ");
-            sb.Append(scope);
-            sb.Append("| token_type ");
-            sb.Append(token_type);
-
-            return sb.ToString();
-        }
-
-    }
-
 }

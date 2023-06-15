@@ -1,11 +1,15 @@
-using System.Net;
-using System.Threading.Tasks;
-using Unity.IO.LowLevel.Unsafe;
-using UnityEngine;
-
-namespace Assembly.IBX.Main
+namespace Assembly.IBX.Auth
 {
-    public interface OAuth2
+    internal struct Token
+    {
+        public string access_token;
+        public long expires_in;
+        public string refresh_token;
+        public string scope;
+        public string token_type;
+    }
+
+    internal interface IOAuth2
     {
         public string launch_url { get; set; }
         public string redirect_uri_incoming { get; set; }
@@ -32,13 +36,5 @@ namespace Assembly.IBX.Main
         {
             throw new System.NotImplementedException();
         }
-    }
-
-    public struct Token
-    {
-        public string access_token;
-        public int expires_in;
-        public string scope;
-        public string token_type;
     }
 }

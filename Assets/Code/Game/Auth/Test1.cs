@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
 
-namespace Assembly.IBX.Main
+namespace Assembly.IBX.Auth
 {
     public class Test1 : MonoBehaviour
     {
         private async void Start()
         {
-            await UnityServices.InitializeAsync();
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            UGSAuth.AuthenticateCachedUser();
 
             DiscordOauth2 discordOauth2 = new DiscordOauth2();
 
