@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine.Events;
 
-namespace Assembly.IBX.Remote
+namespace Assembly.IBX.Web
 {
     public static partial class Configuration
     {

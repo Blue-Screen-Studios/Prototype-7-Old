@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 using UnityEngine;
 using Unity.Services.CloudCode;
 
-using Assembly.IBX.Remote;
+using Assembly.IBX.Web;
 
 namespace Assembly.IBX.Discord
 {
     public static class DiscordOauth2
     {
-        const string SERIALIZATION_FILE_PATH = "/discord.ibx";
+        const string SERIALIZATION_FILE_PATH = "/discord auth.ibx";
 
         public static void LaunchOAuth2Prompt()
         {
@@ -116,9 +116,12 @@ namespace Assembly.IBX.Discord
             }
             else
             {
+                APITokenSetWithLocalTimeData oldTokenSet = DeserializeCachedToken() ?? default;
+
                 serializeableToken = new APITokenSetWithLocalTimeData
                 {
                     token = token,
+                    initialAuthorizationTime = oldTokenSet.initialAuthorizationTime,
                     latestRefreshTime = DateTime.UtcNow
                 };
             }

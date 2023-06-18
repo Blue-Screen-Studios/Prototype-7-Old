@@ -1,6 +1,6 @@
 {
-    "name": "Assembly.IBX.Remote",
-    "rootNamespace": "Assembly.IBX.Remote",
+    "name": "Assembly.IBX.Web",
+    "rootNamespace": "Assembly.IBX.Web",
     "references": [
         "GUID:30e7a851ec87b44ad956804ca8ebf15c",
         "GUID:9d6c7830d9ab746a7a12f144bdeeee7c",

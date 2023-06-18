@@ -1,4 +1,4 @@
-namespace Assembly.IBX.Remote
+namespace Assembly.IBX.Web
 {
     public static partial class Configuration
     {
@@ -20,6 +20,8 @@ namespace Assembly.IBX.Remote
             public bool cache_this_configuration_locally;
             public bool cloud_backup_for_tokens;
             public string client_id;
+            public string current_user_api_endpoint;
+            public string current_user_guilds_api_endpoint;
             public string discord_release_branch_subdomain;
             public string invite_widget_uri;
             public string public_key;

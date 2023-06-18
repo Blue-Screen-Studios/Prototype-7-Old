@@ -1,15 +1,15 @@
-using Assembly.IBX.Remote;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
+using Assembly.IBX.Web;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace Assembly.IBX.Discord
 {
     public class Test1 : MonoBehaviour
     {
+        private static APITokenSet TOKEN_SET;
+
         private async void Awake()
         {
             Configuration.OnConfigurationDataSet.AddListener(AuthorizeDiscord);
@@ -33,9 +33,23 @@ namespace Assembly.IBX.Discord
 
             //Initiate an OAuth2 token exchange with Discord through an authorization code grant
             APITokenSet tokens = await DiscordOauth2.TokenExchangeThroughAuthCode(authCode);
+            TOKEN_SET = tokens;
 
             //Serialize and cache this token set with additional data for the first authorization and the latest refresh time
             DiscordOauth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, true);
+        }
+
+        private static async void GetCurrentUser()
+        {
+            IBXWebRequest request = new IBXWebRequest();
+
+            string response = await request.Get("https://discord.com/api" + Configuration.discordConfiguration.current_user_api_endpoint, new Dictionary<string, string>
+            {
+                { "Authorization", $"Bearer {TOKEN_SET.access_token}" }
+            });
+
+            DiscordUser user = JsonConvert.DeserializeObject<DiscordUser>(response);
+            Debug.Log(user.global_name);
         }
 
         /// <summary>
@@ -70,6 +84,7 @@ namespace Assembly.IBX.Discord
 
                     //Refresh the tokens
                     APITokenSet tokens = await DiscordOauth2.RefreshExchange(tokenSetDataPopulated);
+                    TOKEN_SET = tokens;
 
                     //Serialize and cache this refreshed token set with additional data fro the latest refresh time
                     DiscordOauth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, false);
@@ -81,6 +96,8 @@ namespace Assembly.IBX.Discord
                     FirstTimeAuthorizationFlow();
                 }
             }
+
+            GetCurrentUser();
         }
     }
 }
