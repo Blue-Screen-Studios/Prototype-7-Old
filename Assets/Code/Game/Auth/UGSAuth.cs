@@ -9,7 +9,7 @@ namespace Assembly.IBX.Auth
 {
     internal static class UGSAuth
     {
-        internal static async Task AuthenticateCachedUser()
+        internal static async Task InitializeAndAuthenticateCachedUserIfRequired()
         {
             //If UGS services are not initialized, initialize them
             if(UnityServices.State == ServicesInitializationState.Uninitialized)
