@@ -1,11 +1,11 @@
 {
   "token": {
-    "access_token": "GRjDfP6bkQcVgNs0W6Ob2k3cIkrSUu",
+    "access_token": "YZM99Qzbc5S30O9u9vNpygmkMqFbD8",
     "expires_in": 604800,
-    "refresh_token": "iroh5IDI3UQv0LWkIPmbeSavmAmZWS",
-    "scope": "guilds identify guilds.join role_connections.write",
+    "refresh_token": "wYDqL43WIGYp4enhMZsTC4jDWUnCWx",
+    "scope": "guilds.join identify role_connections.write guilds",
     "token_type": "Bearer"
   },
-  "initialAuthorizationTime": "2023-06-18T05:23:03.3884641Z",
-  "latestRefreshTime": "2023-06-18T05:23:03.3884641Z"
+  "initialAuthorizationTime": "2023-06-18T04:37:52.7925961Z",
+  "latestRefreshTime": "2023-06-18T04:37:52.7925961Z"
 }
