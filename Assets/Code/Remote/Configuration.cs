@@ -4,11 +4,14 @@ using Unity.Services.Authentication;
 using Unity.Services.RemoteConfig;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using UnityEngine.Events;
 
 namespace Assembly.IBX.Remote
 {
     public static partial class Configuration
     {
+        public static UnityEvent OnConfigurationDataSet = new UnityEvent();
+
         public static async Task GetConfiguration()
         {
             if (Utilities.CheckForInternetConnection())
@@ -48,6 +51,8 @@ namespace Assembly.IBX.Remote
 
             OAuth2Port = RemoteConfigService.Instance.appConfig.GetInt("OAuth2 Port");
             discordConfiguration = JsonConvert.DeserializeObject<DiscordConfiguration>(RemoteConfigService.Instance.appConfig.GetJson("Discord Configuration"));
+
+            OnConfigurationDataSet.Invoke();
         }
     }
 }

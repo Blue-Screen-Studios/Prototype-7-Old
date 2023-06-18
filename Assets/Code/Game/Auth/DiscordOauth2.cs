@@ -15,7 +15,7 @@ namespace Assembly.IBX.Auth
 {
     public static class DiscordOauth2
     {
-        const string SERIALIZATION_FILE_PATH = "/cache/discord.ibx";
+        const string SERIALIZATION_FILE_PATH = "/discord.ibx";
 
         public static void LaunchOAuth2Prompt()
         {
@@ -26,8 +26,6 @@ namespace Assembly.IBX.Auth
         {   
             HttpListener listener = new HttpListener();
             string code = string.Empty;
-
-            Debug.Log($"http://localhost:{Configuration.OAuth2Port}{Configuration.discordConfiguration.redirect_uri}");
 
             listener.Prefixes.Add($"http://localhost:{Configuration.OAuth2Port}{Configuration.discordConfiguration.redirect_uri}");
 
@@ -139,6 +137,10 @@ namespace Assembly.IBX.Auth
             }
         }
 
+        /// <summary>
+        /// Reads the token set from disk and desserializes it into a token set data structure
+        /// </summary>
+        /// <returns>The deserialized TokenSet data structure</returns>
         internal static APITokenSetWithLocalTimeData? DeserializeCachedToken()
         {
             if (File.Exists(Application.streamingAssetsPath + SERIALIZATION_FILE_PATH))
