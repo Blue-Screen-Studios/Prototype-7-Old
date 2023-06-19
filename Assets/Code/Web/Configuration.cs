@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine.Events;
 
-namespace Assembly.IBX.Web
+namespace Assembly.IBX.WebIO
 {
     public static partial class Configuration
     {

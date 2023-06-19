@@ -1,4 +1,4 @@
-using Assembly.IBX.Web;
+using Assembly.IBX.WebIO;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -26,17 +26,17 @@ namespace Assembly.IBX.Discord
             Debug.Log("Running the first time authorization flow for Discord.");
 
             //Launch a Discord Authorization prompt in the browser
-            DiscordOauth2.LaunchOAuth2Prompt();
+            OAuth2.LaunchOAuth2Prompt();
 
             //Extract the authorization code through the authorization prompt on a seperate thread and pause this one
-            string authCode = DiscordOauth2.ListenForAuthorizationCode();
+            string authCode = OAuth2.ListenForAuthorizationCode();
 
             //Initiate an OAuth2 token exchange with Discord through an authorization code grant
-            APITokenSet tokens = await DiscordOauth2.TokenExchangeThroughAuthCode(authCode);
+            APITokenSet tokens = await OAuth2.TokenExchangeThroughAuthCode(authCode);
             TOKEN_SET = tokens;
 
             //Serialize and cache this token set with additional data for the first authorization and the latest refresh time
-            DiscordOauth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, true);
+            OAuth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, true);
         }
 
         private static async void GetCurrentUser()
@@ -59,7 +59,7 @@ namespace Assembly.IBX.Discord
         {
             await UGSAuth.InitializeAndAuthenticateCachedUserIfRequired();
 
-            APITokenSetWithLocalTimeData? tokenSetData = DiscordOauth2.DeserializeCachedToken();
+            APITokenSetWithLocalTimeData? tokenSetData = OAuth2.DeserializeCachedToken();
 
             //If we were unable to desrialize a cached token struct...
             if (tokenSetData == null)
@@ -83,11 +83,11 @@ namespace Assembly.IBX.Discord
                     Debug.Log("A cached token set was found for Discord. The cached tokens will be refreshed.");
 
                     //Refresh the tokens
-                    APITokenSet tokens = await DiscordOauth2.RefreshExchange(tokenSetDataPopulated);
+                    APITokenSet tokens = await OAuth2.RefreshExchange(tokenSetDataPopulated);
                     TOKEN_SET = tokens;
 
                     //Serialize and cache this refreshed token set with additional data fro the latest refresh time
-                    DiscordOauth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, false);
+                    OAuth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, false);
                 }
                 else
                 {
