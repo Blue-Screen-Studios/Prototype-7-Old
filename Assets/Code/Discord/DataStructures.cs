@@ -1,6 +1,8 @@
 using System;
 using System.IO;
 
+using Assembly.IBX.WebIO;
+
 namespace Assembly.IBX.Discord
 {
     internal struct APITokenSet
@@ -19,7 +21,7 @@ namespace Assembly.IBX.Discord
         public DateTime latestRefreshTime;
     }
 
-    internal struct DiscordUser
+    internal struct DiscordUserData
     {
         public string id;
         public string username;
@@ -42,7 +44,9 @@ namespace Assembly.IBX.Discord
         public enum ResourceType { AVATAR, BANNER, FILE };
         public ResourceType resourceType;
 
-        public string name;
-        public string extension;
+        public IOSystem.ImageFileFormat imageFileFormat;
+
+        public string clientId;
+        public string filename;
     }
 }

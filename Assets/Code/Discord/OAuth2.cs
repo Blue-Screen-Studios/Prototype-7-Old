@@ -15,7 +15,7 @@ namespace Assembly.IBX.Discord
 {
     public static class OAuth2
     {
-        const string SERIALIZATION_FILE_PATH = "/discord auth.ibx";
+        const string SERIALIZATION_FILE_PATH = "/discord/auth.ibx";
 
         public static void LaunchOAuth2Prompt()
         {

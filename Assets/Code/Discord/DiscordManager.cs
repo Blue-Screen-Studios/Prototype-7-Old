@@ -1,22 +1,28 @@
 using Assembly.IBX.WebIO;
+using Google.Protobuf;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-
+using System.Text;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Assembly.IBX.Discord
 {
-    public class Test1 : MonoBehaviour
+    public class DiscordManager : MonoBehaviour
     {
         private static APITokenSet TOKEN_SET;
 
-        private async void Awake()
+        private async void Update()
         {
-            Configuration.OnConfigurationDataSet.AddListener(AuthorizeDiscord);
-
-            await Configuration.GetConfiguration();
+            if(Keyboard.current.f1Key.wasPressedThisFrame)
+            {
+                await Configuration.GetConfiguration();
+                await AuthorizeDiscord();
+                await DownloadUserProfileContent();
+            }
         }
-
 
         /// <summary>
         /// Contains the process for a first time authorization of the Discord OAuth2 Provider
@@ -39,23 +45,10 @@ namespace Assembly.IBX.Discord
             OAuth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, true);
         }
 
-        private static async void GetCurrentUser()
-        {
-            IBXWebRequest request = new IBXWebRequest();
-
-            string response = await request.Get("https://discord.com/api" + Configuration.discordConfiguration.current_user_api_endpoint, new Dictionary<string, string>
-            {
-                { "Authorization", $"Bearer {TOKEN_SET.access_token}" }
-            });
-
-            DiscordUser user = JsonConvert.DeserializeObject<DiscordUser>(response);
-            Debug.Log(user.global_name);
-        }
-
         /// <summary>
         /// Starts Discord the OAuth2 Authorization Process
         /// </summary>
-        public static async void AuthorizeDiscord()
+        private static async Task AuthorizeDiscord()
         {
             await UGSAuth.InitializeAndAuthenticateCachedUserIfRequired();
 
@@ -96,8 +89,59 @@ namespace Assembly.IBX.Discord
                     FirstTimeAuthorizationFlow();
                 }
             }
+        }
 
-            GetCurrentUser();
+
+        /// <summary>
+        /// Download and store all relevent profile data for the authorized user
+        /// </summary>
+        /// <returns>Awaitable asynchronous operation</returns>
+        private static async Task DownloadUserProfileContent()
+        {
+            //Make a web request to the Discord API requesting the data for the current user
+            string response = await new IBXWebRequest().Get("https://discord.com/api" + Configuration.discordConfiguration.current_user_api_endpoint, new Dictionary<string, string>
+            {
+                { "Authorization", $"Bearer {TOKEN_SET.access_token}" }
+            });
+
+            //Safely write the user data to disk
+            IOSystem.SafeWriteContent("/discord/user.ibx", response, Encoding.UTF8);
+
+            //Serialize the user data into a data structure
+            DiscordUserData userData = JsonConvert.DeserializeObject<DiscordUserData>(response);
+            
+            //Create a CDNResource structs for both the user's avatar and banner
+            CDNResource avatarResource = new CDNResource
+            {
+                resourceType = CDNResource.ResourceType.AVATAR,
+                imageFileFormat = IOSystem.ImageFileFormat.PNG,
+                clientId = userData.id,
+                filename = userData.avatar
+            };
+
+            CDNResource bannerResource = new CDNResource
+            {
+                resourceType = CDNResource.ResourceType.BANNER,
+                imageFileFormat = IOSystem.ImageFileFormat.PNG,
+                clientId = userData.id,
+                filename = userData.banner
+            };
+
+            //Build the URI for each resource we request from Discord
+            string avatarURI = CDN.BuildResourceURI(avatarResource);
+            string bannerURI = CDN.BuildResourceURI(bannerResource);
+
+            //Debug Stuff
+            Debug.Log($"Fetching Discord Avatar from {avatarURI}");
+            Debug.Log($"Fetching Discord Banner from {bannerURI}");
+
+            //Download the avatar and banner images and convert them to textures
+            Texture2D avatar = await CDN.DownloadImageFromURI(avatarURI, 512);
+            Texture2D banner = await CDN.DownloadImageFromURI(bannerURI, 512);
+
+            //Safely write these textures to disk for caching purposes
+            IOSystem.SafeWriteTexture(avatar, "/discord/avatar", IOSystem.ImageFileFormat.PNG);
+            IOSystem.SafeWriteTexture(banner, "/discord/banner", IOSystem.ImageFileFormat.PNG);
         }
     }
 }

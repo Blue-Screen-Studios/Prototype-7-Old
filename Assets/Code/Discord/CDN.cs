@@ -39,33 +39,36 @@ namespace Assembly.IBX.Discord
             }
 
             sb.Append('/');
-            sb.Append(Configuration.discordConfiguration.client_id);
+            sb.Append(cdnResource.clientId);
             sb.Append('/');
-            sb.Append(cdnResource.name);
-            sb.Append(cdnResource.extension);
+            sb.Append(cdnResource.filename);
+            sb.Append('.');
+            sb.Append(IOSystem.GetImageFileExtension(cdnResource.imageFileFormat));
 
             string resourceURI = sb.ToString();
             return resourceURI;
         }
 
-        internal static async Task<Texture2D> DownloadImageFromURI(string uri)
+        internal static async Task<Texture2D> DownloadImageFromURI(string uri, int size = 512)
         {
-            using(UnityWebRequest uwr = new UnityWebRequest(uri))
+            UnityWebRequest uwr = UnityWebRequestTexture.GetTexture(uri + $"?size={size}");
+
+            Debug.Log($"Downloading Textrue2D asset from {uri}");
+
+            AsyncOperation operation = uwr.SendWebRequest();
+
+            while(!operation.isDone)
             {
-                AsyncOperation operation = uwr.SendWebRequest();
-
-                while(!operation.isDone)
-                {
-                    await Task.Delay(1000 / 30); //30 Hz
-                }
-
-                if(uwr.result != UnityWebRequest.Result.Success)
-                {
-                    return null;
-                }
-
-                return DownloadHandlerTexture.GetContent(uwr);
+                await Task.Delay(1000 / 30); //30 Hz
             }
+
+            if(uwr.result != UnityWebRequest.Result.Success)
+            {
+                return null;
+            }
+
+            return ((DownloadHandlerTexture)uwr.downloadHandler).texture;
+            
         }
     }
 }

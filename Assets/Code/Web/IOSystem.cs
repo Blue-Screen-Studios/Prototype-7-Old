@@ -10,6 +10,28 @@ namespace Assembly.IBX.WebIO
         public enum ImageFileFormat { EXR, JPG, PNG, TGA };
         private const long MEGABYTE_SIZE = 1000000;
 
+        /// <summary>
+        /// Get a file extension for an image file format
+        /// </summary>
+        /// <param name="format">The image file format</param>
+        /// <returns>An extension for the image file format</returns>
+        public static string GetImageFileExtension(ImageFileFormat format)
+        {
+            switch(format)
+            {
+                case ImageFileFormat.EXR:
+                    return "exr";
+                case ImageFileFormat.JPG:
+                    return "jpg";
+                case ImageFileFormat.PNG:
+                    return "png";
+                case ImageFileFormat.TGA:
+                    return "tga";
+                default:
+                    return "ibx";
+            }
+        }
+
         private static string GetFullPath(string path)
         {
             char firstChar = path[0];
@@ -67,7 +89,7 @@ namespace Assembly.IBX.WebIO
         /// </summary>
         /// <param name="partialPath">The partial path to write to</param>
         /// <param name="data">The data that will go inside of the file</param>
-        private static void SafeWrite(string partialPath, byte[] data)
+        public static void SafeWriteBytes(string partialPath, byte[] data)
         {
             string writePath = GetFullPath(partialPath);
 
@@ -85,7 +107,7 @@ namespace Assembly.IBX.WebIO
         /// <param name="partialPath">The partial path to write to</param>
         /// <param name="content">The text to write inside the file</param>
         /// <param name="encoding">The method of encoding used for storing text</param>
-        private static void SafeWrite(string partialPath, string content, Encoding encoding)
+        public static void SafeWriteContent(string partialPath, string content, Encoding encoding)
         {
             string writePath = GetFullPath(partialPath);
 
@@ -104,21 +126,23 @@ namespace Assembly.IBX.WebIO
         /// <param name="partialPath">The parital path to write the texture to</param>
         /// <param name="format">The image file format to write in</param>
         /// <param name="quality">Optional - The compression quality of the image (applicable for JPG)</param>
-        public static void WriteTexture(Texture2D texture, string partialPath, ImageFileFormat format, int quality = 95)
+        public static void SafeWriteTexture(Texture2D texture, string partialPath, ImageFileFormat format, int quality = 95)
         {
+            UnityEngine.Debug.Log($"{partialPath} writing texture to disk");
+            
             switch(format)
             {
                 case ImageFileFormat.EXR:
-                    SafeWrite($"{partialPath}.exr", texture.EncodeToEXR());
+                    SafeWriteBytes($"{partialPath}.exr", texture.EncodeToEXR());
                     break;
                 case ImageFileFormat.JPG:
-                    SafeWrite($"${partialPath}.jpg", texture.EncodeToJPG(quality));
+                    SafeWriteBytes($"${partialPath}.jpg", texture.EncodeToJPG(quality));
                     break;
                 case ImageFileFormat.PNG:
-                    SafeWrite($"{partialPath}.png", texture.EncodeToPNG());
+                    SafeWriteBytes($"{partialPath}.png", texture.EncodeToPNG());
                     break;
                 default:
-                    SafeWrite($"{partialPath}.tga", texture.EncodeToTGA());
+                    SafeWriteBytes($"{partialPath}.tga", texture.EncodeToTGA());
                     break;
             }
         }
