@@ -1,10 +1,12 @@
+using Assembly.IBX.Discord.SDK;
 using Assembly.IBX.WebIO;
-using Google.Protobuf;
+
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEditor.AssetImporters;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +15,44 @@ namespace Assembly.IBX.Discord
     public class DiscordManager : MonoBehaviour
     {
         private static APITokenSet TOKEN_SET;
+        private SDK.Discord discord = null;
+        private ActivityManager rpcManager;
+
+        private void Awake()
+        {
+            Configuration.OnConfigurationDataSet.AddListener(OnConfigurationLoaded);
+        }
+
+        private void OnConfigurationLoaded()
+        {
+            discord = new SDK.Discord(long.Parse(Configuration.discordConfiguration.client_id), (UInt64)CreateFlags.NoRequireDiscord);
+        }
+
+        /// <summary>
+        /// Sets the user's RPC in Discord.
+        /// THIS DOES NOT REQUIRE AUTHORIZATION BECUASE IT IS DONE LOCALLY
+        /// </summary>
+        /// <param name="rpc">The RPC to set</param>
+        public void SetDiscordActivityRPC(Activity rpc)
+        {
+            rpcManager.UpdateActivity(rpc, (result) =>
+            {
+                if(result == Result.Ok)
+                {
+                    Debug.Log("Discord RPC Updated.");
+                }
+                else
+                {
+                    Debug.LogError("Failed to update Discord Activity or RPC. This is usually because the user does not have Discord installed on their device.");
+                }
+            });
+        }
+
+        private void OnApplicationQuit()
+        {
+            //When the application quits we must remember to dispose of the Discord objects to prevent memory leaks
+            discord.Dispose();
+        }
 
         private async void Update()
         {
