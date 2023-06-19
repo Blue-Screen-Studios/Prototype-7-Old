@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 
-using Assembly.IBX.Web;
+using Assembly.IBX.WebIO;
 
 namespace Assembly.IBX.Discord
 {

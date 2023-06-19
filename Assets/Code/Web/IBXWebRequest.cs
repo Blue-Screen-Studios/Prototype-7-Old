@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Assembly.IBX.Web
+namespace Assembly.IBX.WebIO
 {
     public class IBXWebRequest
     {

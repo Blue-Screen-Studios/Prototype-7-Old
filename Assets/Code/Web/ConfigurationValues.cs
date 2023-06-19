@@ -1,4 +1,4 @@
-namespace Assembly.IBX.Web
+namespace Assembly.IBX.WebIO
 {
     public static partial class Configuration
     {
@@ -15,10 +15,12 @@ namespace Assembly.IBX.Web
         #region Serialized JSON Data Structures
         public struct DiscordConfiguration
         {
+            public string api_root;
             public string authorization_url;
             public bool availible_oath2_provider;
-            public bool cache_this_configuration_locally;
-            public bool cloud_backup_for_tokens;
+            public string cdn_root;
+            public string cdn_avatar_path;
+            public string cdn_banner_path;
             public string client_id;
             public string current_user_api_endpoint;
             public string current_user_guilds_api_endpoint;
