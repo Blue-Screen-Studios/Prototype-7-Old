@@ -1,0 +1,10 @@
+1 << 1  = DEVELOPER         This player account belongs to a user whom is a developer of Prototype 7
+1 << 2  = DISCORD_MEMBER    This player is confirmed to be in the Prototype 7 Discord Server
+1 << 3  = EARLY_ADOPTER     This player has purchased Prototype 7 within its first year of launch
+1 << 4  = EARLY_PROMOTER    This user promoted Prototype 7 at an event or on social media
+1 << 5  = COMMUNITY_MOD     This user is a moderator in an official Prototype 7 community
+1 << 6  = THANK_YOU_BADGE   This user did something helpfull for the development of Prototype 7 and has been awarded with an in-game thank you!
+1 << 7  = ACC_API_ABUSE     This player is potentially abusing the API. Rate limits should be increased.
+1 << 8  = ACC_UNDERAGE      This player is underage and is not allowed to be analyzed or use multiplayer services
+1 << 9  = ACC_SUSPEND_PREV  This account has previously been suspended
+1 << 10 = ACC_TERMINATED    This account has been terminated. This flag is only visible to other users after a termination.
