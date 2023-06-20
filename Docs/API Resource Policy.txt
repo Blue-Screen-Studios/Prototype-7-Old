@@ -1,0 +1,15 @@
+curl -X PATCH https://services.api.unity.com/access/v1/projects/{projectId}/environments/{environmentId}/resource-policy \
+--header 'Authorization: Basic YOUR_ENCODED_API_KEY' \
+--header 'Content-Type: application/json' \
+--data-raw '
+{
+    "statements": [
+       {
+               "Sid": "deny-cloud-save-write-access",
+               "Effect": "Deny",
+               "Action": ["Write"],
+               "Principal": "Player",
+               "Resource": "urn:ugs:cloud-save:*"
+       }
+   ]
+}'
