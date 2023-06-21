@@ -178,5 +178,15 @@ namespace Assembly.IBX.Discord
 
             return secondsSinceLastRefresh < oauth2Token.token.expires_in;
         }
+
+        internal static void DeleteCachedAuthFile()
+        {
+            string path = Application.streamingAssetsPath + SERIALIZATION_FILE_PATH;
+            
+            if(File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
     }
 }

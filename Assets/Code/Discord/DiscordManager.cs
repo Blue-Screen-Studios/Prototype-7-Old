@@ -6,26 +6,51 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEditor.AssetImporters;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Assembly.IBX.Discord
 {
-    public class DiscordManager : MonoBehaviour
+    public static class DiscordManager
     {
         private static APITokenSet TOKEN_SET;
-        private SDK.Discord discord = null;
-        private ActivityManager rpcManager;
+        private static SDK.Discord discord = null;
+        private static ActivityManager rpcManager;
 
-        private void Awake()
+        public static bool GameSDKAvailible { get; private set; } = false;
+
+        /// <summary>
+        /// Initializes the Discord Game SDK in the Discord Manager Script
+        /// </summary>
+        public static void InitializeSDK()
         {
-            Configuration.OnConfigurationDataSet.AddListener(OnConfigurationLoaded);
+            try
+            {
+                discord = new SDK.Discord(long.Parse(Configuration.discordConfiguration.client_id), (UInt64)CreateFlags.NoRequireDiscord);
+                GameSDKAvailible = true;
+
+                Debug.Log("The Discord Game SDK has been initialized.");
+            }
+            catch
+            {
+                Debug.LogError("The Discord Game SDK could not be initialized. This is usually because Discord is not properly installed or is failing to run correctly.");
+            }
         }
 
-        private void OnConfigurationLoaded()
+        /// <summary>
+        /// Dispose of 'unsafe' code in Discord Manager
+        /// </summary>
+        public static void Dispose()
         {
-            discord = new SDK.Discord(long.Parse(Configuration.discordConfiguration.client_id), (UInt64)CreateFlags.NoRequireDiscord);
+            if(discord != null)
+            {
+                Debug.Log("Disposing the Discord Manager");
+                discord.Dispose();
+            }
+            else
+            {
+                Debug.LogWarning("The Discord Game SDK could not be disposed because it was never initialized.");
+            }
         }
 
         /// <summary>
@@ -33,7 +58,7 @@ namespace Assembly.IBX.Discord
         /// THIS DOES NOT REQUIRE AUTHORIZATION BECUASE IT IS DONE LOCALLY
         /// </summary>
         /// <param name="rpc">The RPC to set</param>
-        public void SetDiscordActivityRPC(Activity rpc)
+        public static void SetDiscordActivityRPC(Activity rpc)
         {
             rpcManager.UpdateActivity(rpc, (result) =>
             {
@@ -46,22 +71,6 @@ namespace Assembly.IBX.Discord
                     Debug.LogError("Failed to update Discord Activity or RPC. This is usually because the user does not have Discord installed on their device.");
                 }
             });
-        }
-
-        private void OnApplicationQuit()
-        {
-            //When the application quits we must remember to dispose of the Discord objects to prevent memory leaks
-            discord.Dispose();
-        }
-
-        private async void Update()
-        {
-            if(Keyboard.current.f1Key.wasPressedThisFrame)
-            {
-                await Configuration.GetConfiguration();
-                await AuthorizeDiscord();
-                await DownloadUserProfileContent();
-            }
         }
 
         /// <summary>
@@ -88,46 +97,58 @@ namespace Assembly.IBX.Discord
         /// <summary>
         /// Starts Discord the OAuth2 Authorization Process
         /// </summary>
-        private static async Task AuthorizeDiscord()
+        public static async Task AuthorizeDiscord()
         {
             await UGSAuth.InitializeAndAuthenticateCachedUserIfRequired();
 
-            APITokenSetWithLocalTimeData? tokenSetData = OAuth2.DeserializeCachedToken();
-
-            //If we were unable to desrialize a cached token struct...
-            if (tokenSetData == null)
+            try
             {
-                Debug.Log("No cached token set could be found. A new authorization code grant will be requested.");
+                APITokenSetWithLocalTimeData? tokenSetData = OAuth2.DeserializeCachedToken();
 
-                //Since we don't have any cached tokens we must go through the first time authorization
-                FirstTimeAuthorizationFlow();
-            }
-            else
-            {
-                //Here we null-coales the token because we previously checked nullablity and it is not null
-                APITokenSetWithLocalTimeData tokenSetDataPopulated = tokenSetData ?? default;
-
-                //Check wether or not a refresh is authorized on this token by the OAuth2 Provider
-                bool refreshAuthorized = OAuth2.IsAPITokenRefreshAuthorized(tokenSetDataPopulated);
-
-                //If a token refresh is authorized
-                if(refreshAuthorized)
+                //If we were unable to desrialize a cached token struct...
+                if (tokenSetData == null)
                 {
-                    Debug.Log("A cached token set was found for Discord. The cached tokens will be refreshed.");
+                    Debug.Log("No cached token set could be found. A new authorization code grant will be requested.");
 
-                    //Refresh the tokens
-                    APITokenSet tokens = await OAuth2.RefreshExchange(tokenSetDataPopulated);
-                    TOKEN_SET = tokens;
-
-                    //Serialize and cache this refreshed token set with additional data fro the latest refresh time
-                    OAuth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, false);
+                    //Since we don't have any cached tokens we must go through the first time authorization
+                    FirstTimeAuthorizationFlow();
                 }
                 else
                 {
-                    Debug.Log("A cached token set was found, however the token set has expired. A new authorization code grant will be requested.");
-                    //Since the tokens we have are expired we must go through the first time authorization again
-                    FirstTimeAuthorizationFlow();
+                    //Here we null-coales the token because we previously checked nullablity and it is not null
+                    APITokenSetWithLocalTimeData tokenSetDataPopulated = tokenSetData ?? default;
+
+                    //Check wether or not a refresh is authorized on this token by the OAuth2 Provider
+                    bool refreshAuthorized = OAuth2.IsAPITokenRefreshAuthorized(tokenSetDataPopulated);
+
+                    //If a token refresh is authorized
+                    if (refreshAuthorized)
+                    {
+                        Debug.Log("A cached token set was found for Discord. The cached tokens will be refreshed.");
+
+                        //Refresh the tokens
+                        APITokenSet tokens = await OAuth2.RefreshExchange(tokenSetDataPopulated);
+                        TOKEN_SET = tokens;
+
+                        //Serialize and cache this refreshed token set with additional data fro the latest refresh time
+                        OAuth2.CreateAndSerializeAPITokenWithLocalTimeData(tokens, false);
+                    }
+                    else
+                    {
+                        Debug.Log("A cached token set was found, however the token set has expired. A new authorization code grant will be requested.");
+                        //Since the tokens we have are expired we must go through the first time authorization again
+                        FirstTimeAuthorizationFlow();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("There was a problem authorizing Discord with the existing authorization Data. See following exception.");
+                Debug.LogException(ex);
+
+                Debug.Log("Deleting invalid Authorization Data");
+                
+                OAuth2.DeleteCachedAuthFile();
             }
         }
 

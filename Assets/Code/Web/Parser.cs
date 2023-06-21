@@ -1,6 +1,8 @@
 using System;
+using System.Diagnostics;
+using System.Linq;
 
-namespace Assembly.IBX.Web
+namespace Assembly.IBX.WebIO
 {
     public static class Parser
     {
@@ -8,34 +10,22 @@ namespace Assembly.IBX.Web
         /// Parses a flags integer into a boolean array
         /// </summary>
         /// <param name="flags">The flags integer to parse</param>
-        /// <param name="totalFlags">The total number of bits, one for each flag</param>
         /// <returns>A boolean array representitive of the flag bits read right to left</returns>
-        public static bool[] ParseFlags(int flags, int totalFlags)
+        public static bool[] ParseFlags(int flags)
         {
+            if(flags < 0) return null;
+
             //Parse the flags integer into its binary representation
             string binary = Convert.ToString(flags, 2);
 
-            //Create the output array with an index for each flag bit in the flags binary
-            bool[] parsedFlags = new bool[totalFlags];
+            //Convert the binary number into a set of bits read from left to right
+            bool[] bits = binary.Select(c => c == '1').ToArray();
 
-            //For each bit in the binary...
-            for(int i = binary.Length - 1; i >= 0; i--)
-            {
-                //Extract the current bit
-                char bit = binary[i];
+            //Reverse the extracted bits so that the bits are effectively read right to left
+            bits.Reverse();
 
-                //If this bit is 0 set this flag to false, otherwise true
-                if(bit == '0')
-                {
-                    parsedFlags[i] = false;
-                }
-                else
-                {
-                    parsedFlags[i] = true;
-                }
-            }
-
-            return parsedFlags;
+            //Return these bits as a boolean array
+            return bits;
         }
     }
 }

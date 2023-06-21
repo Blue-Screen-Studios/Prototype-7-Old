@@ -12,7 +12,7 @@ namespace Assembly.IBX.WebIO
     {
         public static UnityEvent OnConfigurationDataSet = new UnityEvent();
 
-        public static async Task GetConfiguration()
+        public static async Task GetAndLoadConfiguration()
         {
             if (Utilities.CheckForInternetConnection())
             {

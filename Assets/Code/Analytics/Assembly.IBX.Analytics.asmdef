@@ -1,9 +1,8 @@
 {
-    "name": "Assembly.IBX.Accounts",
-    "rootNamespace": "Assembly.IBX.Accounts",
+    "name": "Assembly.IBX.Analytics",
+    "rootNamespace": "Assembly.IBX.Analytics",
     "references": [
-        "GUID:a7a3eb54d27fdca48ab9c96e7a6ab780",
-        "GUID:f220a277eefae4d3aa9e31c2b43bb307",
+        "GUID:5e0b455853cd340e0813387221dfd501",
         "GUID:fe25561d224ed4743af4c60938a59d0b"
     ],
     "includePlatforms": [],
