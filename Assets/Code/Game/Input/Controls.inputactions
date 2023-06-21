@@ -6,11 +6,11 @@
             "id": "3c6308d6-038d-4b1e-a5b8-95bf33ef8e48",
             "actions": [
                 {
-                    "name": "Move",
+                    "name": "Tilt",
                     "type": "Value",
                     "id": "9eee53fd-7360-49b3-ad68-188958b4f949",
                     "expectedControlType": "",
-                    "processors": "",
+                    "processors": "StickDeadzone",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Throttle",
+                    "type": "Button",
+                    "id": "4d8ea1c3-6801-4737-8e53-6697017742bf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -32,7 +41,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Tilt",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -43,7 +52,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Move",
+                    "action": "Tilt",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -54,7 +63,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Move",
+                    "action": "Tilt",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -65,7 +74,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Move",
+                    "action": "Tilt",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -76,7 +85,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KeyboardMouse",
-                    "action": "Move",
+                    "action": "Tilt",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -87,7 +96,7 @@
                     "interactions": "",
                     "processors": "StickDeadzone",
                     "groups": "Gamepad",
-                    "action": "Move",
+                    "action": "Tilt",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -112,6 +121,39 @@
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Axis",
+                    "id": "e18a33cf-c2a2-4200-84a1-11ac83c77c5a",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throttle",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "0e374b54-273a-4cc5-a727-f26205b542a4",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Throttle",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "1c6b1935-1cd6-4c4c-9466-ccedd6a1d547",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Throttle",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

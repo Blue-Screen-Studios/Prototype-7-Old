@@ -30,11 +30,11 @@ namespace Assembly.IBX.Main.Input
             ""id"": ""3c6308d6-038d-4b1e-a5b8-95bf33ef8e48"",
             ""actions"": [
                 {
-                    ""name"": ""Move"",
+                    ""name"": ""Tilt"",
                     ""type"": ""Value"",
                     ""id"": ""9eee53fd-7360-49b3-ad68-188958b4f949"",
                     ""expectedControlType"": """",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -46,6 +46,15 @@ namespace Assembly.IBX.Main.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Throttle"",
+                    ""type"": ""Button"",
+                    ""id"": ""4d8ea1c3-6801-4737-8e53-6697017742bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -56,7 +65,7 @@ namespace Assembly.IBX.Main.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move"",
+                    ""action"": ""Tilt"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -67,7 +76,7 @@ namespace Assembly.IBX.Main.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""Tilt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -78,7 +87,7 @@ namespace Assembly.IBX.Main.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""Tilt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -89,7 +98,7 @@ namespace Assembly.IBX.Main.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""Tilt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -100,7 +109,7 @@ namespace Assembly.IBX.Main.Input
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""KeyboardMouse"",
-                    ""action"": ""Move"",
+                    ""action"": ""Tilt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -111,7 +120,7 @@ namespace Assembly.IBX.Main.Input
                     ""interactions"": """",
                     ""processors"": ""StickDeadzone"",
                     ""groups"": ""Gamepad"",
-                    ""action"": ""Move"",
+                    ""action"": ""Tilt"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -136,6 +145,39 @@ namespace Assembly.IBX.Main.Input
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""e18a33cf-c2a2-4200-84a1-11ac83c77c5a"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""0e374b54-273a-4cc5-a727-f26205b542a4"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1c6b1935-1cd6-4c4c-9466-ccedd6a1d547"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardMouse"",
+                    ""action"": ""Throttle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -688,8 +730,9 @@ namespace Assembly.IBX.Main.Input
 }");
             // Game
             m_Game = asset.FindActionMap("Game", throwIfNotFound: true);
-            m_Game_Move = m_Game.FindAction("Move", throwIfNotFound: true);
+            m_Game_Tilt = m_Game.FindAction("Tilt", throwIfNotFound: true);
             m_Game_Look = m_Game.FindAction("Look", throwIfNotFound: true);
+            m_Game_Throttle = m_Game.FindAction("Throttle", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -763,14 +806,16 @@ namespace Assembly.IBX.Main.Input
         // Game
         private readonly InputActionMap m_Game;
         private List<IGameActions> m_GameActionsCallbackInterfaces = new List<IGameActions>();
-        private readonly InputAction m_Game_Move;
+        private readonly InputAction m_Game_Tilt;
         private readonly InputAction m_Game_Look;
+        private readonly InputAction m_Game_Throttle;
         public struct GameActions
         {
             private @Controls m_Wrapper;
             public GameActions(@Controls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @Move => m_Wrapper.m_Game_Move;
+            public InputAction @Tilt => m_Wrapper.m_Game_Tilt;
             public InputAction @Look => m_Wrapper.m_Game_Look;
+            public InputAction @Throttle => m_Wrapper.m_Game_Throttle;
             public InputActionMap Get() { return m_Wrapper.m_Game; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -780,22 +825,28 @@ namespace Assembly.IBX.Main.Input
             {
                 if (instance == null || m_Wrapper.m_GameActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_GameActionsCallbackInterfaces.Add(instance);
-                @Move.started += instance.OnMove;
-                @Move.performed += instance.OnMove;
-                @Move.canceled += instance.OnMove;
+                @Tilt.started += instance.OnTilt;
+                @Tilt.performed += instance.OnTilt;
+                @Tilt.canceled += instance.OnTilt;
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @Throttle.started += instance.OnThrottle;
+                @Throttle.performed += instance.OnThrottle;
+                @Throttle.canceled += instance.OnThrottle;
             }
 
             private void UnregisterCallbacks(IGameActions instance)
             {
-                @Move.started -= instance.OnMove;
-                @Move.performed -= instance.OnMove;
-                @Move.canceled -= instance.OnMove;
+                @Tilt.started -= instance.OnTilt;
+                @Tilt.performed -= instance.OnTilt;
+                @Tilt.canceled -= instance.OnTilt;
                 @Look.started -= instance.OnLook;
                 @Look.performed -= instance.OnLook;
                 @Look.canceled -= instance.OnLook;
+                @Throttle.started -= instance.OnThrottle;
+                @Throttle.performed -= instance.OnThrottle;
+                @Throttle.canceled -= instance.OnThrottle;
             }
 
             public void RemoveCallbacks(IGameActions instance)
@@ -951,8 +1002,9 @@ namespace Assembly.IBX.Main.Input
         }
         public interface IGameActions
         {
-            void OnMove(InputAction.CallbackContext context);
+            void OnTilt(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
+            void OnThrottle(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
