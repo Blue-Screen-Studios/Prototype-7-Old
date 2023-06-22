@@ -34,10 +34,11 @@ Material:
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords:
   - _DISABLE_SSR_TRANSPARENT
+  - _DOUBLESIDED_ON
   - _NORMALMAP_TANGENT_SPACE
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: 3000
   stringTagMap:
     MotionVector: User
@@ -184,8 +185,8 @@ Material:
     - _BlendMode: 0
     - _CoatMask: 0
     - _ConservativeDepthOffsetEnable: 0
-    - _CullMode: 2
-    - _CullModeForward: 2
+    - _CullMode: 0
+    - _CullModeForward: 0
     - _Cutoff: 0.5
     - _Depression_Radius: 30
     - _DepthOffsetEnable: 0
@@ -197,7 +198,7 @@ Material:
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
-    - _DoubleSidedEnable: 0
+    - _DoubleSidedEnable: 1
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 10
@@ -300,11 +301,11 @@ Material:
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
     - _Map_Size: {r: 250, g: 250, b: 0, a: 0}
     - _Player_1_Color: {r: 0, g: 0, b: 1, a: 0}
-    - _Player_1_Position: {r: -125, g: -1153.3701, b: 0, a: 0}
+    - _Player_1_Position: {r: -81.971634, g: -260.34314, b: 0, a: 0}
     - _Player_2_Color: {r: 1, g: 0, b: 0, a: 0}
-    - _Player_2_Position: {r: -118.67, g: -125, b: 0, a: 0}
+    - _Player_2_Position: {r: -107.23157, g: -98.47792, b: 0, a: 0}
     - _Player_3_Color: {r: 0, g: 1, b: 0, a: 0}
-    - _Player_3_Position: {r: -118.67, g: -125, b: 0, a: 0}
+    - _Player_3_Position: {r: -144.78323, g: -134.40959, b: 0, a: 0}
     - _Relative_Position: {r: -5, g: -5, b: 0, a: 0}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _ThicknessRemap: {r: 0, g: 1, b: 0, a: 0}
