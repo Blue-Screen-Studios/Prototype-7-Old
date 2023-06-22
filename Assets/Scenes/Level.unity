@@ -1766,7 +1766,7 @@ GameObject:
   - component: {fileID: 4216327871730812783}
   - component: {fileID: 949340645285628106}
   - component: {fileID: 3082796410841070592}
-  - component: {fileID: 4216327871730812784}
+  - component: {fileID: 4216327871730812788}
   - component: {fileID: 4216327871730812786}
   - component: {fileID: 4216327871730812787}
   m_Layer: 0
@@ -1872,28 +1872,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4216327871730812784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3587318797576986069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f923045deb0ee6e47817c66355ead8b0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxThrottleVelocity: 10
-  throttleForceMultiplier: 100
-  maxRotationalVelocity: 10
-  tiltMultiplier: 0.1
-  tiltLimit: 40
-  props:
-  - {fileID: 614104040}
-  - {fileID: 138409648}
-  - {fileID: 2049683794}
-  - {fileID: 1821930668}
 --- !u!65 &4216327871730812786
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1942,6 +1920,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4216327871730812788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3587318797576986069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef45ea83695d41499bc4a1d47844388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ForwardBackward: 50
+  Tilt: 50
+  FlyLeftRight: 50
+  UpDown: 200
 --- !u!95 &4398291294332162204
 Animator:
   serializedVersion: 5

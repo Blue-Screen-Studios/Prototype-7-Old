@@ -102,7 +102,7 @@ namespace Assembly.IBX.Main
             {
                 foreach (Transform prop in props)
                 {
-                    rb.AddForceAtPosition(throttleAxis * transform.up, prop.localPosition, ForceMode.Force);
+                    rb.AddForceAtPosition(throttleAxis * Vector3.up, prop.localPosition, ForceMode.Force);
                 }
             }
 
