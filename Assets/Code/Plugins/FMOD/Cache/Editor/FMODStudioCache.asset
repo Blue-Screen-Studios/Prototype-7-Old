@@ -227,7 +227,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Dialogue_CN.bank
   Name: Dialogue_CN
   StudioPath: bank:/Dialogue_CN
-  lastModified: 638214392140068474
+  lastModified: 638214749642615183
   FileSizes:
   - Name: Desktop
     Value: 52416
@@ -329,7 +329,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/VO.bank
   Name: VO
   StudioPath: bank:/VO
-  lastModified: 638230376309190622
+  lastModified: 638231456824352806
   FileSizes:
   - Name: Desktop
     Value: 494
@@ -379,7 +379,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Dialogue_JP.bank
   Name: Dialogue_JP
   StudioPath: bank:/Dialogue_JP
-  lastModified: 638214392142005128
+  lastModified: 638214749642625255
   FileSizes:
   - Name: Desktop
     Value: 66560
@@ -610,7 +610,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Dialogue_EN.bank
   Name: Dialogue_EN
   StudioPath: bank:/Dialogue_EN
-  lastModified: 638214392140989965
+  lastModified: 638214749642615183
   FileSizes:
   - Name: Desktop
     Value: 61120
@@ -757,7 +757,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Vehicles.bank
   Name: Vehicles
   StudioPath: bank:/Vehicles
-  lastModified: 638214392271414921
+  lastModified: 638214749645130694
   FileSizes:
   - Name: Desktop
     Value: 222464
@@ -806,7 +806,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638230376307911885
+  lastModified: 638231456823743573
   FileSizes:
   - Name: Desktop
     Value: 3758
@@ -868,7 +868,7 @@ MonoBehaviour:
   - {fileID: 671578182955740619}
   StringsBanks:
   - {fileID: -1011629524206110168}
-  cacheTime: 638230376309190622
+  cacheTime: 638231456824352806
   cacheVersion: 131603
 --- !u!114 &99286223109182353
 MonoBehaviour:
@@ -961,7 +961,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638230376307896833
+  lastModified: 638214749642635269
   FileSizes:
   - Name: Desktop
     Value: 15592
@@ -1068,7 +1068,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638230376308936694
+  lastModified: 638231456824343081
   FileSizes:
   - Name: Desktop
     Value: 9110208
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638214392270027878
+  lastModified: 638214749645085501
   FileSizes:
   - Name: Desktop
     Value: 21580064
@@ -1508,8 +1508,8 @@ MonoBehaviour:
     Data3: 1244236687
     Data4: 595743019
   Banks:
-  - {fileID: 7214870807285870042}
   - {fileID: 671578182955740619}
+  - {fileID: 7214870807285870042}
   IsStream: 0
   Is3D: 0
   IsOneShot: 0
