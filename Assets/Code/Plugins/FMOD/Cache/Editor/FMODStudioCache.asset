@@ -109,30 +109,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-7731742460287743543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/Radio Dialogue/VO Sidechain
-  m_EditorClassIdentifier: 
-  Name: VO Sidechain
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 4135641038
-    data2: 716951279
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
 --- !u!114 &-7350842617827729368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,28 +188,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-6993525803486773372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Dialogue_CN.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Prototype-7/Build/Desktop/Dialogue_CN.bank
-  Name: Dialogue_CN
-  StudioPath: bank:/Dialogue_CN
-  lastModified: 638214749642615183
-  FileSizes:
-  - Name: Desktop
-    Value: 52416
-  - Name: HTML5
-    Value: 52416
-  Exists: 1
 --- !u!114 &-6854573841344162151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,28 +268,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &-6535104674245640558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/VO.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Prototype-7/Build/Desktop/VO.bank
-  Name: VO
-  StudioPath: bank:/VO
-  lastModified: 638231456824352806
-  FileSizes:
-  - Name: Desktop
-    Value: 494
-  - Name: HTML5
-    Value: 494
-  Exists: 1
 --- !u!114 &-5998099705097253101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,28 +296,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-5233836433146080683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Dialogue_JP.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Prototype-7/Build/Desktop/Dialogue_JP.bank
-  Name: Dialogue_JP
-  StudioPath: bank:/Dialogue_JP
-  lastModified: 638214749642625255
-  FileSizes:
-  - Name: Desktop
-    Value: 66560
-  - Name: HTML5
-    Value: 66560
-  Exists: 1
 --- !u!114 &-5144085969118035815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,28 +505,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 100
   Length: 0
---- !u!114 &-2182717931650223387
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Dialogue_EN.bank
-  m_EditorClassIdentifier: 
-  Path: FMOD/Prototype-7/Build/Desktop/Dialogue_EN.bank
-  Name: Dialogue_EN
-  StudioPath: bank:/Dialogue_EN
-  lastModified: 638214749642615183
-  FileSizes:
-  - Name: Desktop
-    Value: 61120
-  - Name: HTML5
-    Value: 61120
-  Exists: 1
 --- !u!114 &-2047535196439462206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,7 +645,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Vehicles.bank
   Name: Vehicles
   StudioPath: bank:/Vehicles
-  lastModified: 638214749645130694
+  lastModified: 638233116287835550
   FileSizes:
   - Name: Desktop
     Value: 222464
@@ -806,12 +694,12 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638231456823743573
+  lastModified: 638233134284602264
   FileSizes:
   - Name: Desktop
-    Value: 3758
+    Value: 3538
   - Name: HTML5
-    Value: 3758
+    Value: 3538
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -827,14 +715,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: -1011629524206110168}
-  - {fileID: -6993525803486773372}
-  - {fileID: -2182717931650223387}
-  - {fileID: -5233836433146080683}
   - {fileID: 671578182955740619}
   - {fileID: 3335441304268254791}
   - {fileID: 7214870807285870042}
   - {fileID: -1210666573223205551}
-  - {fileID: -6535104674245640558}
   EditorEvents:
   - {fileID: -7057811221503020120}
   - {fileID: 8776376087204433710}
@@ -852,9 +736,7 @@ MonoBehaviour:
   - {fileID: 8015969711128463077}
   - {fileID: 2297476094460795966}
   - {fileID: 7604002801369678152}
-  - {fileID: 6254480178823073779}
   - {fileID: -4664725830348317851}
-  - {fileID: 8855729230531841288}
   - {fileID: -8876540379518888806}
   - {fileID: -5998099705097253101}
   - {fileID: -7038389306965448531}
@@ -868,7 +750,7 @@ MonoBehaviour:
   - {fileID: 671578182955740619}
   StringsBanks:
   - {fileID: -1011629524206110168}
-  cacheTime: 638231456824352806
+  cacheTime: 638233134287190818
   cacheVersion: 131603
 --- !u!114 &99286223109182353
 MonoBehaviour:
@@ -961,12 +843,12 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638214749642635269
+  lastModified: 638233134284577175
   FileSizes:
   - Name: Desktop
-    Value: 15592
+    Value: 15576
   - Name: HTML5
-    Value: 15480
+    Value: 15464
   Exists: 1
 --- !u!114 &964767310308326161
 MonoBehaviour:
@@ -1068,7 +950,7 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 638231456824343081
+  lastModified: 638233116210439347
   FileSizes:
   - Name: Desktop
     Value: 9110208
@@ -1177,34 +1059,6 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
---- !u!114 &6254480178823073779
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Character/Radio Dialogue
-  m_EditorClassIdentifier: 
-  Path: event:/Character/Radio Dialogue
-  Guid:
-    Data1: 1136926599
-    Data2: 1277521951
-    Data3: 432447913
-    Data4: 308547786
-  Banks:
-  - {fileID: 7214870807285870042}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -7731742460287743543}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 999
 --- !u!114 &6653691279356900383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1271,12 +1125,12 @@ MonoBehaviour:
   Path: FMOD/Prototype-7/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638214749645085501
+  lastModified: 638233134287190818
   FileSizes:
   - Name: Desktop
-    Value: 21580064
+    Value: 21551200
   - Name: HTML5
-    Value: 21580064
+    Value: 21551200
   Exists: 1
 --- !u!114 &7255174417637258567
 MonoBehaviour:
@@ -1517,30 +1371,3 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
---- !u!114 &8855729230531841288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Character/Dialogue
-  m_EditorClassIdentifier: 
-  Path: event:/Character/Dialogue
-  Guid:
-    Data1: -1700598587
-    Data2: 1321134667
-    Data3: 1258668933
-    Data4: -853691887
-  Banks:
-  - {fileID: 7214870807285870042}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1000

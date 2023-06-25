@@ -90,8 +90,8 @@ MonoBehaviour:
       Value: 9264
       HasValue: 1
     Overlay:
-      Value: 0
-      HasValue: 0
+      Value: 2
+      HasValue: 1
     Logging:
       Value: 0
       HasValue: 0
@@ -131,15 +131,15 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - 46fbfdf3fc43db0458918377fd40293e
-  - 2fea114e74ecf3c4f920e1d5cc1c4c40
-  - 52eb9df5db46521439908db3a29a1bbb
-  - b7716510a1f36934c87976f3a81dbf3d
-  - 2c5177b11d81d824dbb064f9ac8527da
   - 0f8eb3f400726694eb47beb1a9f94ce8
-  - c88d16e5272a4e241b0ef0ac2e53b73d
+  - 2fea114e74ecf3c4f920e1d5cc1c4c40
   - e7a046c753c3c3d4aacc91f6597f310d
+  - 2c5177b11d81d824dbb064f9ac8527da
   - fd7c55dab0fce234b8c25f6ffca523c1
+  - b7716510a1f36934c87976f3a81dbf3d
+  - 46fbfdf3fc43db0458918377fd40293e
+  - 52eb9df5db46521439908db3a29a1bbb
+  - c88d16e5272a4e241b0ef0ac2e53b73d
   codecChannels:
     Value: []
     HasValue: 0
@@ -304,8 +304,8 @@ MonoBehaviour:
   ImportType: 0
   TargetAssetPath: FMODBanks
   TargetBankFolder: /banks/
-  EventLinkage: 0
-  LoggingLevel: 2
+  EventLinkage: 1
+  LoggingLevel: 4
   SpeakerModeSettings: []
   SampleRateSettings: []
   LiveUpdateSettings: []
@@ -317,13 +317,9 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Dialogue_CN
-  - Dialogue_EN
-  - Dialogue_JP
   - Music
   - SFX
   - Vehicles
-  - VO
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -332,24 +328,24 @@ MonoBehaviour:
   MeterChannelOrdering: 0
   StopEventsOutsideMaxDistance: 0
   BoltUnitOptionsBuildPending: 0
-  EnableErrorCallback: 0
+  EnableErrorCallback: 1
   SharedLibraryUpdateStage: 0
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131603
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131603
   Platforms:
-  - {fileID: 608494014551363863}
-  - {fileID: -8669821604952798374}
-  - {fileID: 7520556547986658730}
-  - {fileID: -8338144358815708677}
-  - {fileID: 7714393126964846434}
-  - {fileID: 7045751963723152804}
-  - {fileID: 3224744284554131290}
   - {fileID: -8923136506146001212}
-  - {fileID: 8362654557609905052}
+  - {fileID: -8669821604952798374}
+  - {fileID: -8338144358815708677}
   - {fileID: -1004348445083085636}
+  - {fileID: 608494014551363863}
+  - {fileID: 3224744284554131290}
   - {fileID: 5110448610967476207}
+  - {fileID: 7045751963723152804}
+  - {fileID: 7520556547986658730}
+  - {fileID: 7714393126964846434}
+  - {fileID: 8362654557609905052}
   MigratedPlatforms: 0500000012000000060000000b000000080000000a000000090000000c000000150000000200000001000000
 --- !u!114 &608494014551363863
 MonoBehaviour:
