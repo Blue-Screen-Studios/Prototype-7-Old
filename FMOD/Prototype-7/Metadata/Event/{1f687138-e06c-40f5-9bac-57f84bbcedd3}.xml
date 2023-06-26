@@ -87,6 +87,7 @@ Explosion samples by Michel Baradari available at https://opengameart.org/conten
 		</relationship>
 		<relationship name="banks">
 			<destination>{561cd480-bd2b-4c2e-b919-d775f9c4f409}</destination>
+			<destination>{3a6ed335-5791-4e3b-a6ff-a5f8bc336cea}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{0d13036d-c221-49f6-a499-2c0ba4bc81c8}">

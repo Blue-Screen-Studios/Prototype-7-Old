@@ -58,6 +58,7 @@ Weapon sounds courtesy of Frank Bry at The Recordist.</value>
 		</relationship>
 		<relationship name="banks">
 			<destination>{561cd480-bd2b-4c2e-b919-d775f9c4f409}</destination>
+			<destination>{3a6ed335-5791-4e3b-a6ff-a5f8bc336cea}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{d3be993f-e341-4615-9b4d-72c12e847f2c}">
